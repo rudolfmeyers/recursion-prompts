@@ -7,12 +7,70 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
+  //handles negative numbers
+  if (n < 0) {
+    return null;
+  }
+  //base case to handle if the number is zero
+  if (n === 0) {
+    return 1
+  }
+  return (n * (factorial(n-1)));
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+  var total= 0;
+    //declare an iterator
+  var iterator= 0;
+  console.log(array)
+
+  var innerFunction = function(input) {
+
+    //if we have reached the end of the array
+    if (iterator === array.length) {
+      //return the total
+      return total;
+    }
+
+    //invoke recursive call
+    array.forEach(function(item) {
+      //return total = total + sum(item);
+      total+= sum(item);
+      iterator ++;
+      // console.log(iterator);
+    })
+  }
+  innerFunction(array);
+
+  return total;
 };
+
+  //  //declare a total number
+  //  var total= 0;
+
+  //  var innerFunction = function() {
+  //    for (var i = 0; i < array.length; i++) {
+  //      total += array[i];
+  //    }
+  //  }
+  //  innerFunction();
+
+  //  return total;
+
+
+//if array has no more remaining values (length = 0)
+  //return the sum
+//take array
+  //add the first value to the total
+  //remove the first value
+
+
+
+// array.forEach(function(item) {
+//   total = sum(total) + item;
+// })
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
@@ -21,6 +79,10 @@ var arraySum = function(array) {
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+  //define a result variable
+  var result = true;
+
+
 };
 
 // 5. Sum all integers below a given integer.
