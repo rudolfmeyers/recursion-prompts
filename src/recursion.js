@@ -18,20 +18,45 @@ var factorial = function(n) {
   return (n * (factorial(n-1)));
 };
 
+
+
+
+
+
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
   var total = 0;
-
-  //base case
-   //if the array has been completely run
-
-  //need to add the numbers in the array to a total
-    //then move to the next item in the array
+  var iterator= 0;
 
 
+
+  //if the iterator is equal to the length of the array
+    //return something to end the iterating
+
+  //add the number at the iterator to the total
+  //add one to the iterator
+
+
+  console.log(total)
   return total;
 };
+
+console.log(sum([1, 2]));
+
+  // //base case
+  // for (var i = 0; i < array.length; i++) {
+  //  //if all of the values from the array have been added
+  //  if (array[i] === array[array.length -1]) {
+  //    return array[i];
+  //  }
+  //  total += sum(array[i])
+  // }
+  //need to add the numbers in the array to a total
+    //then move to the next item in the array
+  // console.log(total)
+
+
 
 
 // 3. Sum all numbers in an array containing nested arrays.
@@ -50,32 +75,51 @@ var arraySum = function(array) {
   return result;
 };
 
+
+
+
+
+
 // 4. Check if a number is even.
 var isEven = function(n) {
   //define a result variable
-  var result = true;
+  var result = false;
+  //make all numbers a positive value
+  n = Math.abs(n);
+  // console.log(n)
 
-  //if the number divided by 2 is equal to math.floor(number divided by 2)
-  if (n/2 !== Math.floor(n/2)) {
-    return false;
+  //if the number divided by 2 is equal to the floored number divided by two, it is even
+  if ((n/2) === Math.floor(n/2)) {
+    return true;
   }
-    //it is even, return true
+  // if the number is less than one when divided by 2, it is odd
+  // if((n/2) < 1) {
+  //   return 'tiny';
+  // }
 
-
-
+  //use recursion to divide by 2 until it reaches 1 or a number that is less than one
   return result;
 };
+
+
+
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  n= Math.abs(n);
+  //base case
   //if the number is less than or equal to zero
-  if (n < 0) {
-    return;
+  if (n === 0) {
+    return 0;
   }
-  return sumBelow(n-1);
+  // console.log(n + sumBelow(n-1));
+  return n-1 + sumBelow(n-1);
+
 };
+
+
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
@@ -83,6 +127,7 @@ var range = function(x, y) {
   //if the int is equal to the lower number
     //return
   //otherwise
+    //push y-1
 
 };
 
