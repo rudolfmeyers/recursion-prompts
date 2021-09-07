@@ -6,6 +6,8 @@
 // denoted by n!, is the product of all positive integers less than or equal to n.
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
+
+//pattern that mimics a loop (cannot be a loop inside)
 var factorial = function(n) {
   //handles negative numbers
   if (n < 0) {
@@ -18,7 +20,19 @@ var factorial = function(n) {
   return (n * (factorial(n-1)));
 };
 
-
+//loop version
+// var factorialLoop = function(n) {
+//   if (n === 0) {
+//     return 1;
+//   }
+//   if (n < 0) {
+//     return null;
+//   }
+//   while ( n >= 0) {
+//     return n * total;
+//     n--
+//   }
+// }
 
 
 
@@ -26,48 +40,37 @@ var factorial = function(n) {
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
-  var total = 0;
-  var iterator= 0;
 
-
-
-  //if the iterator is equal to the length of the array
-    //return something to end the iterating
-
-  //add the number at the iterator to the total
-  //add one to the iterator
-
-
-  console.log(total)
-  return total;
+  if (array.length === 0) {
+    return 0;
+  }
+  return array[0] + sum(array.slice(1));
 };
 
-console.log(sum([1, 2]));
 
-  // //base case
-  // for (var i = 0; i < array.length; i++) {
-  //  //if all of the values from the array have been added
-  //  if (array[i] === array[array.length -1]) {
-  //    return array[i];
-  //  }
-  //  total += sum(array[i])
-  // }
-  //need to add the numbers in the array to a total
-    //then move to the next item in the array
-  // console.log(total)
+// sum([]) => 0;
+// sum([6]) => 6
+// sum([5,6]) => 11
+// sum([4,5,6]) => 15
+// sum([3,4,5,6]) => 18
+// sum([2,3,4,5,6]) => 20
+// sum({1,2,3,4,5,6}) => 21
 
 
 
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
+
+//pattern #2
 var arraySum = function(array) {
   var result = 0;
 
+  //set a case for what you want done
   if (!Array.isArray(array)) {
     return array;
   }
-
+  //check if nested, then loop over and recursively call
   array.forEach(function(item) {
     result = result + arraySum(item)
   })
@@ -108,7 +111,12 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  if (n !== Math.abs(n)) {
+    var isNegative = true;
+  }
+
   n= Math.abs(n);
+
   //base case
   //if the number is less than or equal to zero
   if (n === 0) {
@@ -124,12 +132,41 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
-  //if the int is equal to the lower number
-    //return
-  //otherwise
-    //push y-1
+  if (x <= y) {
+    //if the int is equal to the lower number
+    if (x === (y-1) || x === y) {
+      //return empty array
+      return [];
+    }
+    //otherwise
+      return [x+1].concat(range(x+1, y))
 
+  } else if (x > y) {
+    //if the int is equal to the lower number
+    if ((x-1) === y|| x === y) {
+      //return empty array
+      return [];
+    }
+    //otherwise
+      return (range(x, y+1)).concat([y+1])
+  }
 };
+
+// when x > y
+//range(2,2) => []
+//range(3, 2) => [3]
+//range(4, 2) => [4]
+//range(5, 2) => [5]
+//range(6,2) => [5,4,3]
+
+
+// when x <= y
+//range(2,2) => []
+//range(2,3) => [3]
+//range(2,4) => [4]
+//range(2,5) => [5]
+//range(2, 6) => [3,4,5]
+
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
@@ -137,6 +174,9 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  //when the base is raised to 0
+    //return 1
+
 };
 
 // 8. Determine if a number is a power of two.
@@ -144,10 +184,12 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+  //
 };
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+
 };
 
 // 10. Write a function that determines if a string is a palindrome.
@@ -226,6 +268,7 @@ var rMap = function(array, callback) {
 // countKeysInObj(obj, 'r') // 1
 // countKeysInObj(obj, 'e') // 2
 var countKeysInObj = function(obj, key) {
+  //use pattern from 3
 };
 
 // 23. Write a function that counts the number of times a value occurs in an object.
@@ -233,11 +276,13 @@ var countKeysInObj = function(obj, key) {
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+  //use pattern from 3
 };
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
 var replaceKeysInObj = function(obj, oldKey, newKey) {
+  //use pattern from 3
 };
 
 // 25. Get the first n Fibonacci numbers. In the Fibonacci sequence, each subsequent
