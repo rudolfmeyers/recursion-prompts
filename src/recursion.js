@@ -48,12 +48,12 @@ var sum = function(array) {
 };
 
 
-// sum([]) => 0;
-// sum([6]) => 6
-// sum([5,6]) => 11
-// sum([4,5,6]) => 15
-// sum([3,4,5,6]) => 18
-// sum([2,3,4,5,6]) => 20
+// sum([])            => 0;
+// sum([6])           => 6
+// sum([5,6])         => 11
+// sum([4,5,6])       => 15
+// sum([3,4,5,6])     => 18
+// sum([2,3,4,5,6])   => 20
 // sum({1,2,3,4,5,6}) => 21
 
 
@@ -84,25 +84,39 @@ var arraySum = function(array) {
 
 
 // 4. Check if a number is even.
+//Two base cases required for boolean: one even, one odd
 var isEven = function(n) {
-  //define a result variable
-  var result = false;
-  //make all numbers a positive value
+  //handles negative numbers
   n = Math.abs(n);
-  // console.log(n)
 
-  //if the number divided by 2 is equal to the floored number divided by two, it is even
-  if ((n/2) === Math.floor(n/2)) {
+  //base case for evens
+  if (n === 0) {
     return true;
   }
-  // if the number is less than one when divided by 2, it is odd
-  // if((n/2) < 1) {
-  //   return 'tiny';
-  // }
+  //base case for odds
+  if (n === 1){
+    return false;
+  }
+  n = n - 2;
+  return isEven(n);
 
-  //use recursion to divide by 2 until it reaches 1 or a number that is less than one
-  return result;
 };
+
+//isEven(0)
+//isEven(2)
+//isEven(4)
+//isEven(6)
+//isEven(8)
+//isEven(10)
+
+
+//-or-
+
+//isEven(1)
+//isEven(3)
+//isEven(5)
+//isEven(7)
+//isEven(9)
 
 
 
@@ -111,22 +125,23 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
-  if (n !== Math.abs(n)) {
-    var isNegative = true;
-  }
-
-  n= Math.abs(n);
 
   //base case
-  //if the number is less than or equal to zero
+  //if the number is equal to zero
   if (n === 0) {
     return 0;
   }
-  // console.log(n + sumBelow(n-1));
+  //if the number is negative
+  if (n !== Math.abs(n)) {
+    return n+1 + sumBelow(n+1);
+  }
+  //if the number is positive
   return n-1 + sumBelow(n-1);
 
 };
 
+
+//sumBelow(3)
 
 
 // 6. Get the integers within a range (x, y).
@@ -168,16 +183,46 @@ var range = function(x, y) {
 //range(2, 6) => [3,4,5]
 
 
+
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
 // 8^2 = 8 x 8 = 64. Here, 8 is the base and 2 is the exponent.
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+  //base case
   //when the base is raised to 0
+  if (exp === 0) {
     //return 1
+    return 1;
+  }
+  //if exp is positive and even
+  if (exp > 0 && exp%2 === 0) {
 
+  }
+  if (exp > 0 && exp%2 !== 0) {
+    if (exp === 1) {
+      return base;
+    }
+
+  }
+
+  // return exponent(base, exponent - 1)
 };
+
+//exponent(2, 0) => 1
+//exponent(2, 1) => 2
+//exponent(2, 2) => 4
+//exponent(2, 3) => 8
+
+
+//range(2,2) => []
+//range(2,3) => [3]
+//range(2,4) => [4]
+//range(2,5) => [5]
+//range(2, 6) => [3,4,5]
+
+
 
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
@@ -187,10 +232,23 @@ var powerOfTwo = function(n) {
   //
 };
 
+
+
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
-
+  var newString;
+  //if the string's length is zero
+  if (string.length === 0) {
+    //return the newString
+    return newString;
+  }
+  //add the removed letter to the new string
 };
+//reverse('')
+//reverse('w')
+//reverse('wo')
+//reverse('wor')
+//reverse('word')
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
