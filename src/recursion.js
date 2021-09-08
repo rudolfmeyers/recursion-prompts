@@ -229,30 +229,66 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
-  //
+  if (n === 0) {
+    return false;
+  }
+  if (n === 1) {
+    return true;
+  }
+  if (n % 2 !== 0) {
+    return false;
+  }
+  return powerOfTwo(n/2);
 };
 
+// powerOfTwo(1) => returns true
+// powerOfTwo(2)
+// powerOfTwo(4)
+// powerOfTwo(8)
+// powerOfTwo(16)
+
+// powerOfTwo(2.5) => returns false
+// powerOfTwo(5)
+// powerOfTwo(10)
 
 
 // 9. Write a function that reverses a string.
-var reverse = function(string) {
-  var newString;
+var reverse = function(string, newString) {
   //if the string's length is zero
   if (string.length === 0) {
-    //return the newString
-    return newString;
+    //return empty string
+    return '';
   }
   //add the removed letter to the new string
+  newString += string.slice(-1, string.length);
+  //return the last letter plus the string minus its last letter
+  return string.slice(-1) + reverse(string.slice(0, -1));
 };
-//reverse('')
-//reverse('w')
-//reverse('wo')
-//reverse('wor')
-//reverse('word')
+//reverse('')    => 'drow'
+//reverse('w')   => 'dro'
+//reverse('wo')  => 'dr'
+//reverse('wor') => 'd'
+//reverse('word')=> ''
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  //if the strings are the same, return true
+  if (string === newString) {
+    return true;
+  }
+  //if the strings' lengths are the same but they are not the same word
+  if (string.length === newString.length) {
+    return false;
+  }
+  //newString.push(string[string.length - 1])
+
 };
+
+
+
+
+
+
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
