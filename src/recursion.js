@@ -196,18 +196,11 @@ var exponent = function(base, exp) {
     //return 1
     return 1;
   }
-  //if exp is positive and even
-  if (exp > 0 && exp%2 === 0) {
-
-  }
-  if (exp > 0 && exp%2 !== 0) {
-    if (exp === 1) {
-      return base;
-    }
-
+  if (exp < 0) {
+    return (1/(base**(-exp)))
   }
 
-  // return exponent(base, exponent - 1)
+  return base * exponent(base, exp - 1)
 };
 
 //exponent(2, 0) => 1
@@ -272,21 +265,27 @@ var reverse = function(string, newString) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  //ensure no issues with uppercase letters
+  string= string.toLowerCase();
   //if the strings are the same, return true
-  if (string === newString) {
+  if (string.length === 0) {
     return true;
   }
   //if the strings' lengths are the same but they are not the same word
-  if (string.length === newString.length) {
+  if (string[0] !== string[string.length-1]) {
     return false;
   }
-  //newString.push(string[string.length - 1])
+  //return palindrome(string without first letter and last letter)
+  return palindrome(string.slice(1, -1));
 
 };
 
 
 
 
+// palindrome(y)
+// palindrome(aya)
+// palindrome(kayak)
 
 
 
